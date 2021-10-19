@@ -5,7 +5,6 @@
  * */
 const createRequest  = (options = {}) => {
 
-
     if (options.method === "GET") {
         options.url += "?";
         for (key in options.data) {
@@ -19,8 +18,7 @@ const createRequest  = (options = {}) => {
         body: options.data
     })
     .then(response => response.json())
-    //.then(data => options.callback(data))
-    .then(data => console.log(data))
+    .then(data => options.callback(data))
     .catch(error => console.log(JSON.parse(error)))
 
 };
