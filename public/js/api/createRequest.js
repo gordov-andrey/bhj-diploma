@@ -5,13 +5,13 @@
  * */
 const createRequest  = (options = {}) => {
 
-    if (options.method === "GET") {
-        options.url += "?";
+    if (options.method === 'GET') {
+        options.url += '?';
+
         for (key in options.data) {
           options.url += `${key}=${options.data[key]}&`;
-    
         }
-      } 
+    } 
 
     fetch(options.url, {
         method: options.method,
@@ -19,6 +19,6 @@ const createRequest  = (options = {}) => {
     })
     .then(response => response.json())
     .then(data => options.callback(data))
-    .catch(error => console.log(JSON.parse(error)))
+    .catch(error => console.log(error))
 
 };
