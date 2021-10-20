@@ -65,7 +65,7 @@ class User {
         if (response && response.user) {
           this.setCurrent(response.user);
           callback(response);
-          console.log('Enter Sucess');
+          console.log('Login Sucess');
         }else {
           console.log(response.error);
         }
