@@ -42,9 +42,7 @@ class Sidebar {
     login.addEventListener('click', () => App.getModal('login').open());
     logout.addEventListener('click', () => {
       User.logout();
-      if(response.success){
-        App.setState( 'init' );
-      }
+      App.setState('init');
     });
 
   }
