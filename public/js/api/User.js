@@ -30,7 +30,6 @@ class User {
    * */
   static current() {
     localStorage.getItem('id');
-
   }
 
   /**
@@ -60,7 +59,7 @@ class User {
     createRequest({
       url: this.URL + '/login',
       method: 'POST',
-      data,
+      data: data,
       callback: (err, response) => {
         if (response && response.user) {
           this.setCurrent(response.user);
@@ -80,7 +79,7 @@ class User {
     createRequest({
       url: this.URL + '/register',
       method: 'POST',
-      data,
+      data: data,
       callback: (err, response) => {
         if (response && response.user) {
           this.setCurrent(response.user);
@@ -99,7 +98,7 @@ class User {
     createRequest({
       url: this.URL + '/logout',
       callback: (err, response) => {
-        User.unsetCurrent();
+        this.unsetCurrent();
         callback(err, response);
       }
     });

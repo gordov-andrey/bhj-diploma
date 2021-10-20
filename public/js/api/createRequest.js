@@ -4,21 +4,25 @@
  * на сервер.
  * */
 const createRequest  = (options = {}) => {
+    let url = options.url;
+    let data = options.data;
 
     if (options.method === 'GET') {
-        options.url += '?';
+        url += '?';
 
         for (key in options.data) {
-          options.url += `${key}=${options.data[key]}&`;
+          url += `${key}=${options.data[key]}&`;
         }
-    } 
+    } else {
+        //data = new FormData(options.data);
+    }
 
-    fetch(options.url, {
+    fetch(url, {
         method: options.method,
-        body: options.data
+        body: data
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => options.callback(data))
-    .catch(error => console.log(error))
+    .catch(err => console.log(err))
 
 };
