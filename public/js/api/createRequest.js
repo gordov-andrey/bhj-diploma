@@ -13,16 +13,14 @@ const createRequest  = (options = {}) => {
         for (key in options.data) {
           url += `${key}=${options.data[key]}&`;
         }
-    } else {
-        //data = new FormData(options.data);
-    }
+    } 
 
     fetch(url, {
         method: options.method,
         body: data
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => options.callback(data))
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 
 };
