@@ -13,7 +13,12 @@ const createRequest  = (options = {}) => {
         for (key in options.data) {
           url += `${key}=${options.data[key]}&`;
         }
+<<<<<<< HEAD
     } 
+=======
+    }
+    //console.log(data);
+>>>>>>> 17868bdd78651e89e8933d2856a192cc4f07bf49
 
     fetch(url, {
         method: options.method,
