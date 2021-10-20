@@ -13,9 +13,8 @@ const createRequest  = (options = {}) => {
         for (key in options.data) {
           url += `${key}=${options.data[key]}&`;
         }
-    } else {
-        //data = new FormData(options.data);
     }
+    //console.log(data);
 
     fetch(url, {
         method: options.method,
