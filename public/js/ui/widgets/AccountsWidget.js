@@ -13,8 +13,11 @@ class AccountsWidget {
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
-  constructor( element ) {
-
+  constructor(element) {
+    if (!element) throw new Error('Element not found');
+    this.element = element;
+    this.registerEvents();
+    this.update();
   }
 
   /**
@@ -25,7 +28,13 @@ class AccountsWidget {
    * вызывает AccountsWidget.onSelectAccount()
    * */
   registerEvents() {
-
+    this.element.addEventListener('click', (e) => {
+      if (e.target.closest('.account')) {
+        this.onSelectAccount(e.target)
+      } else if (e.target.closest('.pull-right')) {
+        App.getModal('createAccount').open();
+      }
+    })
   }
 
   /**
@@ -39,6 +48,16 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
+    if (User.current()) {
+      //console.log(User.current());
+      Account.list(User.current(), (response) => {
+        console.log(111111);
+        if (response.success) {
+          this.clear();
+          response.data.forEach(item => this.renderItem(item));
+        }
+      })
+    }
 
   }
 
@@ -48,6 +67,7 @@ class AccountsWidget {
    * в боковой колонке
    * */
   clear() {
+    this.element.querySelectorAll('.account').forEach(item => item.parentNode.removeChild(item));
 
   }
 
@@ -58,26 +78,47 @@ class AccountsWidget {
    * счёта класс .active.
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
-  onSelectAccount( element ) {
-
+  onSelectAccount(element) {
+    if (element.closest('.accounts-panel').querySelector('.active')) {
+      if (element.closest('.account') === element.closest('.accounts-panel').querySelector('.active')) {
+        element.closest('.account').classList.remove('active')
+      } else {
+        element.closest('.accounts-panel').querySelector('.active').classList.remove('active')
+        element.closest('.account').classList.add('active')
+      }
+    } else {
+      element.closest('.account').classList.add('active')
+    }
+    App.showPage('transactions', {
+      account_id: element.closest('.account').dataset.id
+    })
   }
 
-  /**
-   * Возвращает HTML-код счёта для последующего
-   * отображения в боковой колонке.
-   * item - объект с данными о счёте
-   * */
-  getAccountHTML(item){
 
+
+/**
+ * Возвращает HTML-код счёта для последующего
+ * отображения в боковой колонке.
+ * item - объект с данными о счёте
+ * */
+  getAccountHTML(item) {
+    return `
+      <li class="account" data-id=${item.id}>
+        <a href="#">
+          <span>${item.name}</span>
+          <span>${item.sum} ₽</span>
+        </a>
+      </li>
+    `
   }
 
-  /**
-   * Получает массив с информацией о счетах.
-   * Отображает полученный с помощью метода
-   * AccountsWidget.getAccountHTML HTML-код элемента
-   * и добавляет его внутрь элемента виджета
-   * */
-  renderItem(data){
-
+/**
+ * Получает массив с информацией о счетах.
+ * Отображает полученный с помощью метода
+ * AccountsWidget.getAccountHTML HTML-код элемента
+ * и добавляет его внутрь элемента виджета
+ * */
+  renderItem(data) {
+    document.querySelector('.accounts-panel').innerHTML += this.getAccountHTML(data);
   }
 }

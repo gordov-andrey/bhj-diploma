@@ -28,7 +28,7 @@ class User {
    * */
   static current() {
     //console.log(localStorage.getItem('user'));
-    return localStorage.getItem('user');
+    return JSON.parse(localStorage.getItem('user'));
   }
 
   /**

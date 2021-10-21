@@ -12,6 +12,8 @@ class UserWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor(element){
+    if (!element) throw new Error( 'Element not found' );
+    this.element = element;
 
   }
 
@@ -23,6 +25,13 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update(){
+    const userName = document.querySelector('.user-name');
+    const userCurrent = User.current();
+    if (userCurrent){
+      userName.textContent = userCurrent.name;
+    }else {
+      console.log('Пользователь не обнаружен');
+    }
 
   }
 }

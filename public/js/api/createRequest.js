@@ -15,7 +15,6 @@ const createRequest  = (options = {}) => {
         }
     } 
     
-
     fetch(url, {
         method: options.method,
         body: data
