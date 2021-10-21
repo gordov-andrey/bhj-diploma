@@ -5,19 +5,19 @@
  * */
 const createRequest  = (options = {}) => {
     let url = options.url;
-    let data = options.data;
+    let obj = options.data;
 
     if (options.method === 'GET') {
         url += '?';
 
-        for (key in options.data) {
-          url += `${key}=${options.data[key]}&`;
+        for (let key in obj) {
+          url += `${key}=${obj[key]}&`;
         }
+        delete options.data; //Это не правильно, но по другому не придумал.
     } 
-    
     fetch(url, {
         method: options.method,
-        body: data
+        body: options.data
     })
     .then(response => response.json())
     .then(data => options.callback(data))

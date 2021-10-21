@@ -9,6 +9,7 @@ class CreateTransactionForm extends AsyncForm {
    * */
   constructor(element) {
     super(element)
+    this.renderAccountsList();
   }
 
   /**
@@ -17,6 +18,13 @@ class CreateTransactionForm extends AsyncForm {
    * */
   renderAccountsList() {
 
+    Account.list(User.current(),(response) => {
+      if (response.success) {
+        const select = this.element.querySelector('.accounts-select');
+        select.innerHTML = '';
+        response.data.forEach(item => select.innerHTML += `<option value="${item.id}">${item.name}</option>`);
+      }
+    })
   }
 
   /**
@@ -27,5 +35,12 @@ class CreateTransactionForm extends AsyncForm {
    * */
   onSubmit(data) {
 
+    Transaction.create(data, (response) => {
+      if (response.success) {
+        this.element.reset();
+        App.getModal(this.element.closest('.modal').dataset.modalId).close();
+        App.update();
+      }
+    })
   }
 }

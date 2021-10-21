@@ -45,6 +45,26 @@
       "name": "454",
       "user_id": "gk3scmik4kuzrvz33",
       "id": "gk3scmm3wkv0ridzh"
+    },
+    {
+      "name": "r5345",
+      "user_id": "gk3scmik4kuzrvz33",
+      "id": "gk3scmo6zkv12ua1s"
+    },
+    {
+      "name": "erewr",
+      "user_id": "gk3scmik4kuzrvz33",
+      "id": "gk3scmoabkv12w38j"
+    },
+    {
+      "name": "1",
+      "user_id": "gk3scmj9akuzt6t0p",
+      "id": "gk3scmp49kv152s0t"
+    },
+    {
+      "name": "Sber",
+      "user_id": "gk3scmj6ykuzt28d4",
+      "id": "gk3scmpabkv15gl3f"
     }
   ],
   "transactions": [
@@ -182,6 +202,87 @@
       "sum": 300000,
       "type": "expense",
       "user_id": "1"
+    },
+    {
+      "id": "gk3scmomrkv13ifpx",
+      "type": "income",
+      "name": "werwe",
+      "sum": 111,
+      "account_id": "gk3scmo6zkv12ua1s",
+      "user_id": "gk3scmik4kuzrvz33",
+      "created_at": "2021-10-21T15:24:59.540Z"
+    },
+    {
+      "id": "gk3scmon7kv13ivz8",
+      "type": "income",
+      "name": "erew",
+      "sum": 7777777777,
+      "account_id": "gk3scmm3wkv0ridzh",
+      "user_id": "gk3scmik4kuzrvz33",
+      "created_at": "2021-10-21T15:25:20.611Z"
+    },
+    {
+      "id": "gk3scmop9kv13kptu",
+      "type": "expense",
+      "name": "ewr",
+      "sum": 5555,
+      "account_id": "gk3scmm3wkv0ridzh",
+      "user_id": "gk3scmik4kuzrvz33",
+      "created_at": "2021-10-21T15:26:45.953Z"
+    },
+    {
+      "id": "gk3scmorzkv13ts7j",
+      "type": "expense",
+      "name": "w3e32",
+      "sum": 3333333,
+      "account_id": "gk3scmm3wkv0ridzh",
+      "user_id": "gk3scmik4kuzrvz33",
+      "created_at": "2021-10-21T15:33:48.942Z"
+    },
+    {
+      "id": "gk3scmosfkv13u5zv",
+      "type": "expense",
+      "name": "3432",
+      "sum": 77777,
+      "account_id": "gk3scmo6zkv12ua1s",
+      "user_id": "gk3scmik4kuzrvz33",
+      "created_at": "2021-10-21T15:34:06.811Z"
+    },
+    {
+      "id": "gk3scmp72kv1584hk",
+      "type": "income",
+      "name": "qw",
+      "sum": 22,
+      "account_id": "gk3scmp49kv152s0t",
+      "user_id": "gk3scmj9akuzt6t0p",
+      "created_at": "2021-10-21T16:12:57.655Z"
+    },
+    {
+      "id": "gk3scmpaokv15iw3f",
+      "type": "income",
+      "name": "Gas",
+      "sum": 500,
+      "account_id": "gk3scmpabkv15gl3f",
+      "user_id": "gk3scmj6ykuzt28d4",
+      "created_at": "2021-10-21T16:21:19.994Z"
+    },
+    {
+      "id": "gk3scmpawkv15ka2g",
+      "type": "expense",
+      "name": "test",
+      "sum": 100,
+      "account_id": "gk3scmpabkv15gl3f",
+      "user_id": "gk3scmj6ykuzt28d4",
+      "created_at": "2021-10-21T16:22:24.759Z"
+    },
+    {
+      "id": "gk3scmpqqkv16bt7l",
+      "type": "income",
+      "name": "tyrt",
+      "sum": 111,
+      "account_id": "gk3scmm3wkv0ridzh",
+      "user_id": "gk3scmik4kuzrvz33",
+      "created_at": "2021-10-21T16:43:49.281Z"
     }
   ]
 }

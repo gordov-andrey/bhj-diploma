@@ -48,17 +48,14 @@ class AccountsWidget {
    * метода renderItem()
    * */
   update() {
-    if (User.current()) {
-      //console.log(User.current());
+    if (User.current()){
       Account.list(User.current(), (response) => {
-        console.log(111111);
         if (response.success) {
           this.clear();
           response.data.forEach(item => this.renderItem(item));
         }
       })
     }
-
   }
 
   /**
@@ -68,7 +65,6 @@ class AccountsWidget {
    * */
   clear() {
     this.element.querySelectorAll('.account').forEach(item => item.parentNode.removeChild(item));
-
   }
 
   /**
@@ -79,19 +75,12 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount(element) {
-    if (element.closest('.accounts-panel').querySelector('.active')) {
-      if (element.closest('.account') === element.closest('.accounts-panel').querySelector('.active')) {
-        element.closest('.account').classList.remove('active')
-      } else {
-        element.closest('.accounts-panel').querySelector('.active').classList.remove('active')
-        element.closest('.account').classList.add('active')
-      }
-    } else {
-      element.closest('.account').classList.add('active')
+    const active = this.element.querySelector( '.active' );
+    if (active) {
+      active.classList.remove( 'active' );
     }
-    App.showPage('transactions', {
-      account_id: element.closest('.account').dataset.id
-    })
+    element.classList.add( 'active' );
+    App.showPage( 'transactions', { account_id: element.dataset.id });
   }
 
 
