@@ -95,15 +95,17 @@ class TransactionsPage {
     if(!options) return;
     this.lastOptions = options;
 
-    console.log('!!!!!', this.lastOptions);
+    console.log('опшнс', this.lastOptions);
 
     Account.get(options.account_id, User.current(), (response) => {
+      console.log('Account.get', response);
       if (response.success) {
         this.renderTitle(response.data.name);
       }
     })
 
     Transaction.list(options, (response) => {
+      console.log('Transaction.list', response);
       if (response.success) {
         this.renderTransactions(response.data);
       }
