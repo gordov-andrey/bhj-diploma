@@ -141,10 +141,10 @@ class TransactionsPage {
    * */
   formatDate(date){
 
-    const inputDate = new Date(date);
-    const DMY = inputDate.toLocaleString( 'ru', { year: 'numeric', month: 'long', day: 'numeric' });
-    const HM = inputDate.toLocaleString( 'ru', { hour: 'numeric', minute: 'numeric' });
-    return `${ DMY } в ${ HM }`;
+    const data = new Date(date);
+    const ddmmyyyy = data.toLocaleString( 'ru', { year: 'numeric', month: 'long', day: 'numeric' });
+    const hhmm = data.toLocaleString( 'ru', { hour: 'numeric', minute: 'numeric' });
+    return `${ ddmmyyyy } в ${ hhmm }`;
 
   }
 
