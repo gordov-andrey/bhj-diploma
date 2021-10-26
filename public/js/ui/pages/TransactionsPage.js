@@ -39,7 +39,10 @@ class TransactionsPage {
       }
 
       if (e.target.closest('.transaction__remove')) {
-        this.removeTransaction(e.target.dataset.id)
+        // console.log(e.target.dataset.id);
+        // console.log(e.target.closest('.transaction__remove').dataset.id)
+        // this.removeTransaction(e.target.dataset.id);
+        this.removeTransaction(e.target.closest('.transaction__remove').dataset.id)
       }
     })
 
@@ -55,10 +58,12 @@ class TransactionsPage {
    * для обновления приложения
    * */
   removeAccount() {
-
-    if (lastOptions){
+    if (this.lastOptions) {
       if (confirm('Вы действительно хотите удалить счёт?')) {
-        Account.remove(this.lastOptions.account_id, (response) => {
+
+        const accountId = new FormData();
+        accountId.append('id', this.lastOptions.account_id)
+        Account.remove(accountId, (response) => {
           if (response.success){
             this.clear()
             App.update()
@@ -67,7 +72,6 @@ class TransactionsPage {
       }
     }
   }
-
   /**
    * Удаляет транзакцию (доход или расход). Требует
    * подтверждеия действия (с помощью confirm()).
@@ -75,13 +79,16 @@ class TransactionsPage {
    * либо обновляйте текущую страницу (метод update) и виджет со счетами
    * */
   removeTransaction( id ) {
-
-    if (confirm('Вы действительно хотите удалить эту транзакцию?')) {
-      Transaction.remove(id, (response) => {
-        if (response.success){
-          App.update();
-        }
-      })
+    if (this.lastOptions) {
+      if (confirm('Вы действительно хотите удалить эту транзакцию?')) {
+        const ID = new FormData();
+        ID.append('id', id);
+        Transaction.remove(ID, (response) => {
+          if (response.success){
+            App.update();
+          }
+        })
+      }
     }
   }
 
@@ -95,17 +102,15 @@ class TransactionsPage {
     if(!options) return;
     this.lastOptions = options;
 
-    console.log('опшнс', this.lastOptions);
+    //console.log('опшнс', this.lastOptions);
 
     Account.get(options.account_id, User.current(), (response) => {
-      console.log('Account.get', response);
       if (response.success) {
         this.renderTitle(response.data.name);
       }
     })
 
     Transaction.list(options, (response) => {
-      console.log('Transaction.list', response);
       if (response.success) {
         this.renderTransactions(response.data);
       }
@@ -153,7 +158,6 @@ class TransactionsPage {
    * item - объект с информацией о транзакции
    * */
   getTransactionHTML(item){
-    console.log('getTransactionHTML', item);
 
     return `<div class="transaction transaction_${item.type.toLowerCase()} row">
               <div class="col-md-7 transaction__details">
@@ -184,7 +188,6 @@ class TransactionsPage {
    * используя getTransactionHTML
    * */
   renderTransactions(data){
-    console.log('renderTransactions', data);
 
     const content = this.element.querySelector('.content');
     content.innerHTML = '';

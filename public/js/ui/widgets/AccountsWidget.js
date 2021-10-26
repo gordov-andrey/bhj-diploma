@@ -30,12 +30,13 @@ class AccountsWidget {
   registerEvents() {
     this.element.addEventListener('click', (e) => {
       if (e.target.closest('.account')) {
-        this.onSelectAccount(e.target)
+        this.onSelectAccount(e.target.closest('.account'))
       } else if (e.target.closest('.pull-right')) {
         App.getModal('createAccount').open();
       }
     })
   }
+
 
   /**
    * Метод доступен только авторизованным пользователям

@@ -42,6 +42,7 @@ class App {
     this.pages = {
       transactions: new TransactionsPage(this.content),
     };
+
   }
 
   /**

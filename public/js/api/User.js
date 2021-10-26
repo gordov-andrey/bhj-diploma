@@ -65,7 +65,6 @@ class User {
         if (response && response.user) {
           this.setCurrent(response.user);
           callback(response);
-          console.log('Login Sucess');
         }else {
           console.log(response.error);
         }
@@ -88,7 +87,6 @@ class User {
         if (response && response.user) {
           this.setCurrent(response.user);
           callback(response);
-          console.log('Register Sucess');
         }else {
           console.log(response.error);
         }
@@ -108,7 +106,6 @@ class User {
       callback: (response) => {
         if (response){
           User.unsetCurrent();
-          console.log('Logout Sucess');
         }else {
           console.log('Что-то пошло не так.');
         }
